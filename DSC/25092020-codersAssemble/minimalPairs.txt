@@ -1,0 +1,5 @@
+In this question, the main problem is to find the absolute minimum difference. If the constraint of the number of elements was less, then we could have used 2 loops and solved it in O(n^2) time complexity. But since the upper limit is 10^5, we can't.
+
+The key observation here is that the minimum absolute difference must be a difference between two consecutive elements in the sorted array. We can sort the array in O(nlogn) using quick sort or merge sort.
+
+So to find the min difference, we compare adjacent pairs in the sorted array and then just traverse through the vector and print the pairs.

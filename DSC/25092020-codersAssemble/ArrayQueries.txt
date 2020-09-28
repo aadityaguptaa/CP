@@ -1,0 +1,7 @@
+First, we need to find how many times an element will appear i.e in how many subarrays an element is the greatest one. Let's call that array G.
+
+The key observation is, to compute G, we can multiply the number of consecutive elements on the left and right sides. We can use a stack to compute it in O(n) time complexity.
+
+Then, we store the frequency element with the product of its divisors in pairs in a vector V and sort it in decreasing order with respect to the first element.
+
+Now, we can do a binary search on the V array's first element, to find our desired result.
