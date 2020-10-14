@@ -43,3 +43,111 @@ In Sample Case #1, you can spend a total of 6 hours training the first student a
 In Sample Case #2, you can already pick a fair team (the first and second student) without having to do any coaching, so the answer is 0.
 
 In Sample Case #3, P = N, so every student will be on your team. You have to spend 6 hours training the third student, so that they have a skill of 7, like everyone else. This is the minimum time you can spend, so the answer is 6.
+
+
+--------------------------------------------------------------APPROACH---------------------------------------------------------------------------
+
+
+
+
+
+
+
+    Sign in
+    Join now
+
+Google Kickstart Round A- Problem1 (Training)
+Google Kickstart Round A- Problem1 (Training)
+Published on March 25, 2019
+Rahul Gorai
+Rahul GoraiFollow
+Software Engineer 2 at Cisco Systems , Go Lang
+
+34
+3
+
+    1
+
+Problem :
+
+As the football coach at your local school, you have been tasked with picking a team of exactly P students to represent your school. There are N students for you to pick from. The i-th student has a skill ratingSi, which is a positive integer indicating how skilled they are.
+
+You have decided that a team is fair if it has exactly P students on it and they all have the same skill rating. That way, everyone plays as a team. Initially, it might not be possible to pick a fair team, so you will give some of the students one-on-one coaching. It takes one hour of coaching to increase the skill rating of any student by 1.
+
+The competition season is starting very soon (in fact, the first match has already started!), so you'd like to find the minimum number of hours of coaching you need to give before you are able to pick a fair team.
+
+Input:
+
+The first line of the input gives the number of test cases, T. T test cases follow. Each test case starts with a line containing the two integers N and P, the number of students and the number of students you need to pick, respectively. Then, another line follows containing Nintegers Si; the i-th of these is the skill of the i-th student.
+
+Output:
+
+For each test case, output one line containing Case #x: y, where x is the test case number (starting from 1) and y is the minimum number of hours of coaching needed, before you can pick a fair team of Pstudents.
+
+Constraints:
+
+Time limit: 15 seconds per test set.
+
+Memory limit: 1 GB.
+
+1 ≤ T ≤ 100.
+
+1 ≤ Si ≤ 10000, for all i.
+
+2 ≤ P ≤ N.
+
+Test set 1 (Visible)
+
+2 ≤ N ≤ 1000.
+
+Test set 2 (Hidden)
+
+2 ≤ N ≤ 105.
+Sample
+
+Input :
+
+3
+4 3
+3 1 9 100
+6 2
+5 5 1 2 3 4
+5 5
+7 7 1 7 7
+
+Output :
+
+Case #1: 14
+Case #2: 0
+Case #3: 6
+
+  
+
+In Sample Case #1, you can spend a total of 6 hours training the first student and 8 hours training the second one. This gives the first, second and third students a skill level of 9. This is the minimum time you can spend, so the answer is 14.
+
+In Sample Case #2, you can already pick a fair team (the first and second student) without having to do any coaching, so the answer is 0.
+
+In Sample Case #3, P = N, so every student will be on your team. You have to spend 6 hours training the third student, so that they have a skill of 7, like everyone else. This is the minimum time you can spend, so the answer is 6.
+
+Solution:
+
+We can solve this using greedy approach with a technique of finding the cumulative sum. Then we can have a lookup array which stores the previous minimum values and once we get the new minimum values we just compare it with previous minimum value and take the min.
+
+Lets take an example :
+
+You have n=4 and p=3, and the skill array as 3 1 9 100.
+
+So n=4,p=3 and skill=[3,1,9,100]
+
+Let's first sort the array, in the worst case it takes O(nlogn) if you use merge sort or quick sort. Now, skill array becomes [1,3,9,100]
+
+Now, take one array sum-> This stores the cumulative sum of numbers in skill array.
+
+By default set sum[0]=0 // Sum of 0 elements of value 0 is always 0.
+
+At the end sum array looks like sum=[0,1,4,13,113]. The sum array stores the cumulative sum of all the numbers in array skill. When you calculate sum[4]-sum[0], this gives the sum from 0th element to 4th element. Similarly, sum[4]-sum[1] gives sum from 1st element to 4th element.
+
+Now the algorithm runs like this, since we need to pick up 3 players we look up the sum array sum[3] and check the sum of three elements (sum[3]-sum[0]). In general we range j from p-1 to n-1 and find s=sum[j+1]-sum[j-(p-1)]. ( This gives me the sum of p elements in skill array). Now, to find the training cost we select a[j] ( the highest element in the range) and calculate trainingcost=(a[j]*p-s). Then result comes as result=min (result, trainingcost). This is the minimum of previous calculated value and the current training cost in the current range.Finally return, result as the answer.
+
+Now, the problem seems very easy, but the competition goes tough with the data set provided to run the code. Obviously if we use normal int or double we may get memory error, segmentation faults etc. We will using long long int, Time complexity is okay , depends on how good our sorting approach is. In worst case it comes as O(nlogn).
+
