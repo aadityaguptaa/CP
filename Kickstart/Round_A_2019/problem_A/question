@@ -19,18 +19,12 @@ Memory limit: 1 GB.
 1 ≤ Si ≤ 10000, for all i.
 2 ≤ P ≤ N.
 Test set 1 (Visible)
-
 2 ≤ N ≤ 1000.
 Test set 2 (Hidden)
-
 2 ≤ N ≤ 105.
-Sample
-
-Input
-
-Output
 
 
+Sample Input
 3
 4 3
 3 1 9 100
@@ -39,15 +33,10 @@ Output
 5 5
 7 7 1 7 7
 
-
-
-
-
+Sample Output
 Case #1: 14
 Case #2: 0
 Case #3: 6
-
-
 
 In Sample Case #1, you can spend a total of 6 hours training the first student and 8 hours training the second one. This gives the first, second and third students a skill level of 9. This is the minimum time you can spend, so the answer is 14.
 
